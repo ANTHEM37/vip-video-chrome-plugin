@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "VIP视频解析助手",
+  "version": "0.1.0",
+  "description": "手动触发，在新标签页用可配置接口解析当前视频链接。",
+  "icons": {
+    "16": "assets/icon-16.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+  "action": {
+    "default_title": "VIP解析",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "options_page": "src/options.html",
+  "permissions": [
+    "contextMenus",
+    "scripting",
+    "activeTab",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*.v.qq.com/*",
+    "*://*.youku.com/*",
+    "*://*.iqiyi.com/*",
+    "*://*.mgtv.com/*",
+    "*://*.bilibili.com/*",
+    "*://tv.sohu.com/*"
+  ]
+}
