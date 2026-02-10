@@ -1,0 +1,39 @@
+{
+  "parsers": [
+    {
+      "name": "线路1",
+      "url": "https://jx.xmflv.com/?url="
+    },
+    {
+      "name": "线路2",
+      "url": "https://jx.playerjy.com/?url="
+    },
+    {
+      "name": "线路3",
+      "url": "https://jx.m3u8.tv/jiexi/?url="
+    },
+    {
+      "name": "线路4",
+      "url": "https://jx.aidouer.net/?url="
+    }
+  ],
+  "sitePatterns": [
+    "*://*.v.qq.com/*",
+    "*://*.youku.com/*",
+    "*://*.iqiyi.com/*",
+    "*://*.mgtv.com/*",
+    "*://*.bilibili.com/*",
+    "*://tv.sohu.com/*"
+  ],
+  "healthAutoSwitch": true,
+  "preferOverlay": true,
+  "autoRetryEnabled": true,
+  "autoRetryMax": 3,
+  "sponsorUrl": "",
+  "overlayBlacklist": [],
+  "overlay": {
+    "width": 1100,
+    "height": 640,
+    "fadeMs": 140
+  }
+}

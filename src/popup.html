@@ -29,7 +29,8 @@
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
       border: 1px solid var(--border);
     }
-    .brand { font-weight: 700; font-size: 14px; margin-bottom: 12px; display:flex; align-items:center; gap:8px; }
+    .brand { font-weight: 700; font-size: 14px; margin-bottom: 12px; display:flex; align-items:center; justify-content:space-between; }
+    .brand-left{display:flex;align-items:center;gap:8px}
     .dot {
       width: 18px; height: 18px; border-radius: 6px; background:#22c55e; position: relative; display:inline-block;
     }
@@ -37,26 +38,43 @@
     label { font-size: 12px; color: var(--muted); display:block; margin-bottom:6px; }
     select { width: 100%; padding: 10px 12px; border-radius: 10px; border:1px solid var(--border); background:#fff; font-size: 14px; }
     .row { margin-top: 12px; }
-    .primary { width: 100%; padding: 12px 14px; border: none; border-radius: 10px; background: var(--primary); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; }
+    .primary { width: 100%; padding: 12px 14px; border: none; border-radius: 10px; background: var(--primary); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity .15s ease; }
     .primary:active { background: var(--primary-pressed); }
+    .primary[disabled], .primary.disabled { opacity: .5; cursor: not-allowed; }
     .toolbar { margin-top: 8px; display:flex; justify-content:flex-end; }
     .link { background: transparent; border:none; color: var(--muted); font-size:12px; cursor:pointer; text-decoration: underline; }
+    .probe { width: 100%; padding: 10px 12px; border-radius: 10px; border:1px dashed var(--border); background:#fff; color:#0c4a6e; font-weight:600; cursor:pointer; }
+    .grid { display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-top:10px; }
+    .pill { padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid var(--border); display:inline-flex; align-items:center; gap:6px; cursor:pointer; user-select:none; }
+    .pill.active { border-color:#0ea5e9; background:#e0f2fe; box-shadow: 0 0 0 3px #bae6fd inset; }
+    .dotg { width:8px; height:8px; background:#16a34a; border-radius:999px; }
+    .dotr { width:8px; height:8px; background:#dc2626; border-radius:999px; }
+    .dotk { width:8px; height:8px; background:#94a3b8; border-radius:999px; }
+    .pill.skip { opacity:.6; }
+    .muted-row { font-size:12px; color:var(--muted); margin-top:6px; }
+    .skeleton { height: 14px; border-radius: 8px; background: linear-gradient(90deg,#f1f5f9,#e2e8f0,#f1f5f9); background-size: 200% 100%; animation: sk 1.2s infinite; }
+    @keyframes sk { 0%{background-position: 200% 0} 100%{background-position: -200% 0} }
+    .switch { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); margin-top:8px; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <div class="brand"><span class="dot"></span><span>VIP 视频解析</span></div>
-      <div class="row">
-        <label for="parserSelect">选择解析接口</label>
-        <select id="parserSelect"></select>
+      <div class="brand">
+        <div class="brand-left"><span class="dot"></span><span>VIP 视频解析</span></div>
+        <div class="brand-right"><button id="openOptions" class="link" title="打开配置">⚙︎</button></div>
       </div>
       <div class="row">
-        <button id="parseBtn" class="primary">解析播放</button>
+        <button id="probeBtn" class="probe">探测路线</button>
+        <div id="probeArea" class="muted-row" style="display:none"></div>
+        <div id="chooseHint" class="muted-row" style="display:none">探测完成：请选择一个有效路线后点击“开始解析”。</div>
+        
       </div>
-      <div class="toolbar">
-        <button id="openOptions" class="link" title="管理解析接口">管理解析接口…</button>
+      <div class="row">
+        <button id="parseBtn" class="primary" disabled>开始解析</button>
       </div>
+      <div id="msg" style="margin-top:8px;font-size:12px;color:#dc2626;display:none;"></div>
+      <div class="toolbar"></div>
     </div>
   </div>
   <script src="popup.js" type="module"></script>

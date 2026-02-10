@@ -17,17 +17,20 @@
       "128": "assets/icon-128.png"
     }
   },
+  "options_page": "src/options.html",
   "background": {
     "service_worker": "src/background.js",
     "type": "module"
   },
-  "options_page": "src/options.html",
   "permissions": [
+    "tabs",
     "contextMenus",
-    "scripting",
+    "notifications",
     "activeTab",
+    "alarms",
+    "webNavigation",
     "storage",
-    "tabs"
+    "scripting"
   ],
   "host_permissions": [
     "*://*.v.qq.com/*",
@@ -36,5 +39,21 @@
     "*://*.mgtv.com/*",
     "*://*.bilibili.com/*",
     "*://tv.sohu.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.v.qq.com/*",
+        "*://*.youku.com/*",
+        "*://*.iqiyi.com/*",
+        "*://*.mgtv.com/*",
+        "*://*.bilibili.com/*",
+        "*://tv.sohu.com/*"
+      ],
+      "js": [
+        "src/content.js"
+      ],
+      "run_at": "document_idle"
+    }
   ]
 }

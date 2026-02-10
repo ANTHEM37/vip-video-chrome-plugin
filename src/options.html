@@ -1,55 +1,46 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <title>VIP解析 - 选项</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <title>解析接口配置</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: system-ui, -apple-system, Arial, sans-serif; margin: 16px; max-width: 800px; }
-    h2 { margin-top: 0; }
-    .row { display: flex; gap: 8px; margin-top: 8px; }
-    .row input { flex: 1; padding: 6px; }
-    .list { margin-top: 8px; }
-    .list li { display: flex; gap: 8px; align-items: center; margin: 6px 0; }
-    button { padding: 6px 10px; }
-    .muted { color: #666; font-size: 12px; }
-    textarea { width: 100%; min-height: 120px; }
-    .section { border: 1px solid #eee; padding: 12px; border-radius: 8px; margin-bottom: 16px; }
+    body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Noto Sans,Arial;margin:0;background:#f6f8fc;color:#0f172a}
+    .wrap{max-width:880px;margin:32px auto;padding:0 16px}
+    h1{font-size:20px;margin:0 0 16px}
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,.06);padding:16px}
+    .row{display:flex;gap:8px;margin-top:8px}
+    input[type=text]{flex:1;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px}
+    button{padding:10px 12px;border:none;border-radius:10px;background:#0ea5e9;color:#fff;font-weight:700;cursor:pointer}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{border-bottom:1px solid #e5e7eb;padding:10px 8px;font-size:14px}
+    .muted{color:#64748b;font-size:12px;margin-top:6px}
+    .danger{background:#ef4444}
+    .ghost{background:#e2e8f0;color:#0f172a}
   </style>
 </head>
 <body>
-  <h2>VIP解析 - 选项</h2>
-
-  <div class="section">
-    <h3>解析接口</h3>
-    <div class="muted">建议以 "?url=" 结尾，例如：https://jx.xmflv.com/?url=</div>
-    <div class="row">
-      <input id="parserInput" placeholder="输入解析接口前缀，如 https://jx.xmflv.com/?url=">
-      <button id="addParser">添加</button>
-    </div>
-    <ul id="parserList" class="list"></ul>
-    <div class="muted">提示：每一行包含“名称 + URL 前缀”。名称可随意，URL 需以 http(s):// 开头。</div>
-  </div>
-
-  <div class="section">
-    <h3>站点清单</h3>
-    <div class="muted">每行一个通配规则，如 *://*.v.qq.com/*</div>
-    <textarea id="patternsBox"></textarea>
-    <div class="row">
-      <button id="savePatterns">保存站点清单</button>
-      <button id="restoreDefaults">恢复默认</button>
+  <div class="wrap">
+    <h1>解析接口配置</h1>
+    <div class="card">
+      <div class="row">
+        <input id="name" type="text" placeholder="名称（例如：虾米解析）" />
+        <input id="url" type="text" placeholder="前缀（例如：https://jx.xmflv.com/?url=）" />
+        <button id="add">添加</button>
+      </div>
+      <div class="muted">说明：仅需填写“前缀”，系统会自动拼接 encodeURIComponent(视频URL)。</div>
+      <table>
+        <thead><tr><th style="width:48px">#</th><th>名称</th><th>前缀</th><th style="width:180px">操作</th></tr></thead>
+        <tbody id="list"></tbody>
+      </table>
+      <div class="row" style="justify-content:flex-end;margin-top:12px">
+        <button id="restore" class="ghost">恢复内置</button>
+        <button id="save">保存</button>
+      </div>
+      <div id="msg" class="muted"></div>
     </div>
   </div>
-
-  <div class="section">
-    <h3>导入/导出</h3>
-    <div class="row">
-      <button id="exportBtn">导出配置</button>
-      <button id="importBtn">导入配置</button>
-    </div>
-    <textarea id="ioBox" class="muted" placeholder="导出后内容显示在这里；粘贴导入内容后再点“导入配置”"></textarea>
-  </div>
-
   <script type="module" src="options.js"></script>
 </body>
 </html>
+
