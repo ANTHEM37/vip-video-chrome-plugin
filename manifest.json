@@ -28,7 +28,6 @@
     "notifications",
     "activeTab",
     "alarms",
-    "webNavigation",
     "storage",
     "scripting"
   ],
@@ -38,7 +37,9 @@
     "*://*.iqiyi.com/*",
     "*://*.mgtv.com/*",
     "*://*.bilibili.com/*",
-    "*://tv.sohu.com/*"
+    "*://tv.sohu.com/*",
+    "http://*/*",
+    "https://*/*"
   ],
   "content_scripts": [
     {

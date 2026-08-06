@@ -47,11 +47,12 @@
 
 ## 配置与隐私
 - 配置：接口前缀仅由 `src/config.json` 提供（例如 5 条解析前缀），不提供 UI 管理
-- 权限：`activeTab`、`tabs`、`storage`、`contextMenus`、`scripting`
+- 权限：`activeTab`、`tabs`、`storage`、`contextMenus`、`scripting`、`alarms`、`notifications`；另需 `http(s)://*/*` 以便后台真实探测解析接口
 
 说明：
 - 不收集、不上传任何浏览记录或个人信息；所有解析都在你的浏览器本地完成。
-- 未声明广泛主机权限（host_permissions 仅用于常见视频站内容脚本）。
+- 内容脚本仍仅注入常见视频站；主机权限用于探测/拉取用户配置的解析接口。
+- 覆盖层无法确认跨域播放是否成功；黑屏时请用“换线路”或“新标签页打开”。
 
 ---
 
